@@ -161,8 +161,7 @@ h2 {
   background:linear-gradient(to bottom,#0b0b0b,#0e1510);
 }
 
-/* ================= VIEWER ================= */
-
+/* VIEWER */
 .viewer {
   position:fixed;
   inset:0;
@@ -198,7 +197,7 @@ h2 {
 .left { left:20px; }
 .right { right:20px; }
 
-/* ACKNOWLEDGEMENT */
+/* ACK */
 .acknowledgement {
   overflow:hidden;
   white-space:nowrap;
@@ -219,6 +218,55 @@ h2 {
   to { transform:translateX(-100%); }
 }
 
+/* MOBILE */
+@media (max-width:768px){
+
+  nav{
+    gap:20px;
+    font-size:14px;
+    padding:12px;
+  }
+
+  .hero-content h1{
+    font-size:24px;
+  }
+
+  .hero-content p{
+    font-size:14px;
+  }
+
+  section{
+    padding:80px 5%;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .program-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    height:260px;
+  }
+
+  .viewer img{
+    max-width:95%;
+    max-height:70%;
+  }
+
+  .nav-btn{
+    font-size:28px;
+    padding:10px;
+  }
+
+  .close{
+    font-size:24px;
+  }
+
+}
+
 </style>
 </head>
 
@@ -231,7 +279,6 @@ h2 {
   <a href="#masterplan">Master Plan</a>
 </nav>
 
-<!-- HERO -->
 <section id="home" class="hero">
   <video autoplay muted loop playsinline>
     <source src="experience.mp4">
@@ -245,7 +292,6 @@ h2 {
   </div>
 </section>
 
-<!-- EXISTING -->
 <section id="existing" class="section-existing">
   <h2>Existing Conditions</h2>
 
@@ -261,7 +307,6 @@ h2 {
   </div>
 </section>
 
-<!-- PROGRAM -->
 <section id="program" class="section-program">
   <h2>Program & Amenities</h2>
 
@@ -275,7 +320,6 @@ h2 {
   </div>
 </section>
 
-<!-- MASTER -->
 <section id="masterplan" class="section-masterplan">
   <h2>Master Plan</h2>
 
@@ -289,7 +333,6 @@ h2 {
   </div>
 </section>
 
-<!-- VIEWER -->
 <div class="viewer" id="viewer">
   <span class="close" onclick="closeViewer()">✕</span>
   <div class="nav-btn left" onclick="prev()">‹</div>
@@ -297,7 +340,6 @@ h2 {
   <div class="nav-btn right" onclick="next()">›</div>
 </div>
 
-<!-- ACK -->
 <section class="acknowledgement">
   <div class="scroll-text">
     Design concept developed by Pl.ural. Visualization, rendering, and interactive UI by Treeviz —
@@ -364,6 +406,13 @@ window.addEventListener("scroll", () => {
   } else {
     document.querySelector(".hero").classList.remove("scrolled");
   }
+});
+
+/* ✅ 关键：加载直接显示 */
+window.addEventListener("load", () => {
+  document.querySelectorAll("section").forEach(sec => {
+    sec.classList.add("show");
+  });
 });
 </script>
 

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tara Project – Cinematic Narrative UI</title>
+
+<style>
+:root {
+  --existing: #bfbfb8;
+  --program: #e67e2f;
+  --masterplan: #4b6b4a;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  font-family:Arial;
+  background:#0b0b0b;
+  color:white;
+}
+
+/* NAV */
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:15px;
+  z-index:1000;
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+}
+
+/* HERO */
+.hero {
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero video {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.2);
+  transition:1s;
+  z-index:-2;
+}
+
+.hero-mask {
+  position:absolute;
+  inset:0;
+  background:#000;
+  animation:reveal 1.8s ease forwards;
+  z-index:-1;
+}
+
+@keyframes reveal {
+  to { transform:scaleX(0); }
+}
+
+.hero-content {
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+  opacity:0;
+  filter:blur(10px);
+  animation:textReveal 2s ease forwards 1s;
+}
+
+@keyframes textReveal {
+  to { opacity:1; filter:blur(0); }
+}
+
+.hero.scrolled video {
+  transform:scale(1.05);
+}
+
+.hero.scrolled .hero-content {
+  opacity:0;
+}
+
+/* SECTION */
+section {
+  padding:120px 10%;
+  min-height:100vh;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+section.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* TITLE */
+h2 {
+  border-left:4px solid white;
+  padding-left:12px;
+  margin-bottom:40px;
+}
+
+.section-existing h2 { border-color:var(--existing); }
+.section-program h2 { border-color:var(--program); }
+.section-masterplan h2 { border-color:var(--masterplan); }
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.program-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* CARD */
+.card {
+  background:#1a1a1a;
+  height:420px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.card img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.card:hover {
+  transform:translateY(-6px);
+}
+
+/* BG */
+.section-program {
+  background:linear-gradient(to bottom,#0b0b0b,#1a120c);
+}
+
+.section-masterplan {
+  background:linear-gradient(to bottom,#0b0b0b,#0e1510);
+}
+
+/* ================= VIEWER ================= */
+
+.viewer {
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.viewer img {
+  max-width:90%;
+  max-height:90%;
+}
+
+.close {
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.nav-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  cursor:pointer;
+  padding:20px;
+}
+
+.left { left:20px; }
+.right { right:20px; }
+
+/* ACKNOWLEDGEMENT */
+.acknowledgement {
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding:20px 0;
+}
+
+.scroll-text {
+  display:inline-block;
+  padding-left:100%;
+  animation:scrollText 25s linear infinite;
+  font-size:13px;
+  color:#888;
+}
+
+@keyframes scrollText {
+  from { transform:translateX(0); }
+  to { transform:translateX(-100%); }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#existing">Existing</a>
+  <a href="#program">Program</a>
+  <a href="#masterplan">Master Plan</a>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="experience.mp4">
+  </video>
+
+  <div class="hero-mask"></div>
+
+  <div class="hero-content">
+    <h1>Reimaging Community Space</h1>
+    <p>Tara Project - Cinematic Narrative</p>
+  </div>
+</section>
+
+<!-- EXISTING -->
+<section id="existing" class="section-existing">
+  <h2>Existing Conditions</h2>
+
+  <div class="grid">
+    <div class="card">
+      <a href="existing-detail.html">
+        <img src="existing1.jpg">
+      </a>
+    </div>
+    <div class="card">
+      <img src="existing2.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program" class="section-program">
+  <h2>Program & Amenities</h2>
+
+  <div class="program-grid">
+    <div class="card" onclick="openGallery('program',0)"><img src="Baseball Diamond.png"></div>
+    <div class="card" onclick="openGallery('program',1)"><img src="Basketball Court.png"></div>
+    <div class="card" onclick="openGallery('program',2)"><img src="Soccer Pitch.png"></div>
+    <div class="card" onclick="openGallery('program',3)"><img src="Splash Pads.png"></div>
+    <div class="card" onclick="openGallery('program',4)"><img src="Walking Trails.png"></div>
+    <div class="card" onclick="openGallery('program',5)"><img src="Night Scene.png"></div>
+  </div>
+</section>
+
+<!-- MASTER -->
+<section id="masterplan" class="section-masterplan">
+  <h2>Master Plan</h2>
+
+  <div class="grid">
+    <div class="card" onclick="openGallery('master',0)">
+      <img src="masterplan.jpg">
+    </div>
+    <div class="card" onclick="openGallery('master',1)">
+      <img src="masterplan 2.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- VIEWER -->
+<div class="viewer" id="viewer">
+  <span class="close" onclick="closeViewer()">✕</span>
+  <div class="nav-btn left" onclick="prev()">‹</div>
+  <img id="viewerImg">
+  <div class="nav-btn right" onclick="next()">›</div>
+</div>
+
+<!-- ACK -->
+<section class="acknowledgement">
+  <div class="scroll-text">
+    Design concept developed by Pl.ural. Visualization, rendering, and interactive UI by Treeviz —
+    Design concept developed by Pl.ural. Visualization, rendering, and interactive UI by Treeviz
+  </div>
+</section>
+
+<script>
+const galleries = {
+  program: [
+    "Baseball Diamond.png",
+    "Basketball Court.png",
+    "Soccer Pitch.png",
+    "Splash Pads.png",
+    "Walking Trails.png",
+    "Night Scene.png"
+  ],
+  master: [
+    "masterplan.jpg",
+    "masterplan 2.jpg"
+  ]
+};
+
+let currentGallery = [];
+let index = 0;
+
+function openGallery(type, i){
+  currentGallery = galleries[type];
+  index = i;
+  document.getElementById("viewer").style.display="flex";
+  show();
+}
+
+function show(){
+  document.getElementById("viewerImg").src = currentGallery[index];
+}
+
+function next(){
+  index = (index+1)%currentGallery.length;
+  show();
+}
+
+function prev(){
+  index = (index-1+currentGallery.length)%currentGallery.length;
+  show();
+}
+
+function closeViewer(){
+  document.getElementById("viewer").style.display="none";
+}
+
+/* scroll animation */
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
+
+  if(window.scrollY > 100){
+    document.querySelector(".hero").classList.add("scrolled");
+  } else {
+    document.querySelector(".hero").classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

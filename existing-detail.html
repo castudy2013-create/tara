@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Existing Conditions</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0b0b;
+  color:white;
+}
+
+/* 主容器 */
+.container {
+  display:flex;
+  height:100vh;
+}
+
+/* 左侧文字 */
+.text {
+  width:40%;
+  padding:80px 60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.text h1 {
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+.text p {
+  color:#ccc;
+  line-height:1.6;
+}
+
+.text ul {
+  margin-top:10px;
+  padding-left:20px;
+}
+
+.text li {
+  margin-bottom:8px;
+}
+
+/* 右侧图片 */
+.image {
+  width:60%;
+  height:100%;
+}
+
+.image img {
+  width:100%;
+  height:100%;
+  object-fit:cover; /* 🔥 沉浸式铺满 */
+}
+
+/* 响应式（手机） */
+@media(max-width:900px){
+  .container {
+    flex-direction:column;
+  }
+
+  .text, .image {
+    width:100%;
+    height:auto;
+  }
+
+  .image img {
+    height:auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- 左侧文字 -->
+  <div class="text">
+
+    <h1>Existing Conditions</h1>
+
+    <p><strong>
+    Comprehensive overview of current park facilities, infrastructure, and site features
+    </strong></p>
+
+    <h2>Main Park Tara</h2>
+
+    <p>
+    Main Park Tara is a large municipal park that hosts agricultural events and multiple sports fields.
+    The park has considerable undesignated open space that takes a long time to mow.
+    </p>
+
+    <h3>Key Issues Identified:</h3>
+
+    <ul>
+      <li>Large portions of the site are underutilized</li>
+      <li>Circulation lacks clear hierarchy</li>
+      <li>Recreational zones are fragmented</li>
+    </ul>
+
+  </div>
+
+  <!-- 右侧图片 -->
+  <div class="image">
+    <img src="existing1.jpg">
+  </div>
+
+</div>
+
+</body>
+</html>
